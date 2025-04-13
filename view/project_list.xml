@@ -1,0 +1,9 @@
+<tree>
+   <field name="no"/>
+   <field name="customer"/>
+   <field name="proj_name"/>
+   <field name="start_date"/>
+   <field name="end_date"/>
+   <field name="closed"/>
+   <field name="user"/>
+</tree>

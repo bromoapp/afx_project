@@ -1,0 +1,8 @@
+<form>
+   <label name="project"/>
+   <field name="project"/>
+   <label name="member"/>
+   <field name="member"/>
+   <label name="role"/>
+   <field name="role"/>
+</form>

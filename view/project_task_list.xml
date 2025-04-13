@@ -1,0 +1,7 @@
+<tree>
+   <field name="project"/>
+   <field name="task_name"/>
+   <field name="pic"/>
+   <field name="priority"/>
+   <field name="status"/>
+</tree>

@@ -1,0 +1,115 @@
+<tryton>
+   <data>
+      <!-- Project -->
+      <!-- Views definition -->
+      <record model="ir.ui.view" id="project_view_form">
+         <field name="model">afx.project</field>
+         <field name="type">form</field>
+         <field name="name">project_form</field>
+      </record>
+      <record model="ir.ui.view" id="project_view_list">
+         <field name="model">afx.project</field>
+         <field name="type">tree</field>
+         <field name="name">project_list</field>
+      </record>
+      <!-- Menu entry -->
+      <record model="ir.action.act_window" id="act_project_form">
+         <field name="name">Projects</field>
+         <field name="res_model">afx.project</field>
+      </record>
+      <record model="ir.action.act_window.view" id="act_project_form_view1">
+         <field name="sequence" eval="10"/>
+         <field name="view" ref="project_view_list"/>
+         <field name="act_window" ref="act_project_form"/>
+      </record>
+      <record model="ir.action.act_window.view" id="act_project_form_view2">
+         <field name="sequence" eval="20"/>
+         <field name="view" ref="project_view_form"/>
+         <field name="act_window" ref="act_project_form"/>
+      </record>
+      <!-- Menu items -->
+      <menuitem
+         name="Projects"
+         sequence="50"
+         id="menu_project"/>
+      <menuitem
+         parent="menu_project"
+         action="act_project_form"
+         sequence="10"
+         id="menu_project_form"/>
+      <!-- Project Task -->
+      <!-- Views definition -->
+      <record model="ir.ui.view" id="project_task_view_form">
+         <field name="model">afx.project.task</field>
+         <field name="type">form</field>
+         <field name="name">project_task_form</field>
+      </record>
+      <record model="ir.ui.view" id="project_task_view_list">
+         <field name="model">afx.project.task</field>
+         <field name="type">tree</field>
+         <field name="name">project_task_list</field>
+      </record>
+      <!-- Menu entry -->
+      <record model="ir.action.act_window" id="act_project_task_form">
+         <field name="name">Project Tasks</field>
+         <field name="res_model">afx.project.task</field>
+      </record>
+      <record model="ir.action.act_window.view" id="act_project_task_form_view1">
+         <field name="sequence" eval="10"/>
+         <field name="view" ref="project_task_view_list"/>
+         <field name="act_window" ref="act_project_task_form"/>
+      </record>
+      <record model="ir.action.act_window.view" id="act_project_task_form_view2">
+         <field name="sequence" eval="20"/>
+         <field name="view" ref="project_task_view_form"/>
+         <field name="act_window" ref="act_project_task_form"/>
+      </record>
+      <!-- Menu items -->
+      <!-- <menuitem
+         name="Project Tasks"
+         sequence="50"
+         id="menu_project_task"/>
+      <menuitem
+         parent="menu_project_task"
+         action="act_project_task_form"
+         sequence="10"
+         id="menu_project_task_form"/> -->
+      <!-- Project Member -->
+      <!-- Views definition -->
+      <record model="ir.ui.view" id="project_member_view_form">
+         <field name="model">afx.project.member</field>
+         <field name="type">form</field>
+         <field name="name">project_member_form</field>
+      </record>
+      <record model="ir.ui.view" id="project_member_view_list">
+         <field name="model">afx.project.member</field>
+         <field name="type">tree</field>
+         <field name="name">project_member_list</field>
+      </record>
+      <!-- Menu entry -->
+      <record model="ir.action.act_window" id="act_project_member_form">
+         <field name="name">Project Members</field>
+         <field name="res_model">afx.project.member</field>
+      </record>
+      <record model="ir.action.act_window.view" id="act_project_member_form_view1">
+         <field name="sequence" eval="10"/>
+         <field name="view" ref="project_member_view_list"/>
+         <field name="act_window" ref="act_project_member_form"/>
+      </record>
+      <record model="ir.action.act_window.view" id="act_project_member_form_view2">
+         <field name="sequence" eval="20"/>
+         <field name="view" ref="project_member_view_form"/>
+         <field name="act_window" ref="act_project_member_form"/>
+      </record>
+      <!-- Menu items -->
+      <!-- <menuitem
+         name="Project Members"
+         sequence="50"
+         id="menu_project_member"/>
+      <menuitem
+         parent="menu_project_member"
+         action="act_project_member_form"
+         sequence="10"
+         id="menu_project_member_form"/> -->
+   </data>
+</tryton>

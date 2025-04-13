@@ -1,0 +1,5 @@
+<tree>
+   <field name="project"/>
+   <field name="member"/>
+   <field name="role"/>
+</tree>

@@ -1,0 +1,38 @@
+<form>
+   <label name="no"/>
+   <field name="no"/>
+   <label name="customer"/>
+   <field name="customer"/>
+   <label name="end_user"/>
+   <field name="end_user"/>
+   <label name="so_no"/>
+   <field name="so_no"/>
+   <label name="proj_no"/>
+   <field name="proj_no"/>
+   <label name="proj_date"/>
+   <field name="proj_date"/>
+   <label name="proj_name"/>
+   <field name="proj_name"/>
+   <label name="start_date"/>
+   <field name="start_date"/>
+   <label name="end_date"/>
+   <field name="end_date"/>
+   <label name="upd_date"/>
+   <field name="upd_date"/>
+   <label name="revenue"/>
+   <field name="revenue"/>
+   <label name="closed"/>
+   <field name="closed"/>
+   <label name="cancel"/>
+   <field name="cancel"/>
+   <label name="user"/>
+   <field name="user"/>
+   <notebook colspan="6">
+      <page name="members" col="1">
+         <field name="members"/>
+      </page>
+      <page name="tasks" col="1">
+         <field name="tasks"/>
+      </page>
+   </notebook>
+</form>
