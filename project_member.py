@@ -26,7 +26,16 @@ class ProjectMember(ModelSQL, ModelView):
             delta = (self.est_end_date - self.est_start_date).days
             return max(delta, 0)  # Ensure non-negative duration
         return 0  # Return 0 if either date is missing
-
+    
+    @fields.depends('project', 'est_start_date', 'est_end_date')
+    def on_change_project(self):
+        if self.project:
+            self.est_start_date = self.project.start_date
+            self.est_end_date = self.project.end_date
+        else:
+            self.est_start_date = None
+            self.est_end_date = None
+    
     @classmethod
     def validate(cls, records):
         """
