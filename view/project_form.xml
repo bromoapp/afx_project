@@ -1,6 +1,6 @@
 <form>
-   <label name="no"/>
-   <field name="no"/>
+   <label name="proj_no"/>
+   <field name="proj_no"/>
    <label name="customer"/>
    <field name="customer"/>
    <label name="end_user"/>
@@ -9,8 +9,6 @@
    <field name="so_no"/>
    <label name="po_no"/>
    <field name="po_no"/>
-   <label name="proj_no"/>
-   <field name="proj_no"/>
    <label name="proj_name"/>
    <field name="proj_name"/>
    <label name="start_date"/>

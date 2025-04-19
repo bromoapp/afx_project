@@ -1,4 +1,6 @@
 <form>
+   <label name="proj_no"/>
+   <field name="proj_no"/>
    <label name="proj_name"/>
    <field name="proj_name"/>
    <label name="start_date"/>

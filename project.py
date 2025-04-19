@@ -14,7 +14,7 @@ class Project(ModelSQL, ModelView):
     # Hardcoded
     MAIN_COMPANY = 1
 
-    no = fields.Char("No")
+    proj_no = fields.Char("Project No", required=True)
     customer = fields.Many2One('company.company', "Customer", 'name', required=True, domain=[
         ('id', '!=', MAIN_COMPANY)
     ])
@@ -23,7 +23,6 @@ class Project(ModelSQL, ModelView):
     ])
     so_no = fields.Char("S/O Number", required=True)
     po_no = fields.Char("PO Number", required=True)
-    proj_no = fields.Char("Project No", required=True)
     proj_name = fields.Char("Project Name", required=True)
     start_date = fields.Date("Start Date", required=True)
     end_date = fields.Date("End Date", required=False)

@@ -1,5 +1,5 @@
 <tree>
-   <field name="no"/>
+   <field name="proj_no"/>
    <field name="customer"/>
    <field name="proj_name"/>
    <field name="start_date"/>
