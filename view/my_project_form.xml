@@ -1,0 +1,13 @@
+<form>
+   <label name="proj_name"/>
+   <field name="proj_name"/>
+   <label name="start_date"/>
+   <field name="start_date"/>
+   <label name="end_date"/>
+   <field name="end_date"/>
+   <notebook colspan="6">
+      <page name="tasks" col="1">
+         <field name="tasks"/>
+      </page>
+   </notebook>
+</form>

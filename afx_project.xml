@@ -1,7 +1,44 @@
 <tryton>
    <data>
-      <!-- Project -->
+      <!-- Access Groups -->
+      <!-- Admin Definitions -->
+      <record model="res.group" id="group_project_admin">
+         <field name="name">Project Administration</field>
+      </record>
+      <!-- Admin Assignments -->
+      <record model="res.user-res.group" id="user_admin_project_admin">
+         <field name="user" ref="res.user_admin"/>
+         <field name="group" ref="group_project_admin"/>
+      </record>
+      <!-- Addmin Access -->
+      <record model="ir.model.access" id="access_project_admin">
+         <field name="model">afx.project</field>
+         <field name="group" ref="group_project_admin"/>
+         <field name="perm_read" eval="True"/>
+         <field name="perm_write" eval="True"/>
+         <field name="perm_create" eval="True"/>
+         <field name="perm_delete" eval="True"/>
+      </record>
+      <!-- User Definitions -->
+      <record model="res.group" id="group_project_user">
+         <field name="name">Project User</field>
+      </record>
+      <!-- User Assignments -->
+      <record model="res.user-res.group" id="user_admin_project_user">
+         <field name="user" ref="res.user_admin"/>
+         <field name="group" ref="group_project_user"/>
+      </record>
+      <!-- User Access -->
+      <record model="ir.model.access" id="access_project_user">
+         <field name="model">afx.project</field>
+         <field name="group" ref="group_project_user"/>
+         <field name="perm_read" eval="True"/>
+         <field name="perm_write" eval="False"/>
+         <field name="perm_create" eval="False"/>
+         <field name="perm_delete" eval="False"/>
+      </record>
       <!-- Views definition -->
+      <!-- Projects -->
       <record model="ir.ui.view" id="project_view_form">
          <field name="model">afx.project</field>
          <field name="type">form</field>
@@ -12,7 +49,19 @@
          <field name="type">tree</field>
          <field name="name">project_list</field>
       </record>
+      <!-- My Projects -->
+      <record model="ir.ui.view" id="my_project_view_form">
+         <field name="model">afx.project</field>
+         <field name="type">form</field>
+         <field name="name">my_project_form</field>
+      </record>
+      <record model="ir.ui.view" id="my_project_view_list">
+         <field name="model">afx.project</field>
+         <field name="type">tree</field>
+         <field name="name">my_project_list</field>
+      </record>
       <!-- Menu entry -->
+      <!-- Projects -->
       <record model="ir.action.act_window" id="act_project_form">
          <field name="name">Projects</field>
          <field name="res_model">afx.project</field>
@@ -27,9 +76,24 @@
          <field name="view" ref="project_view_form"/>
          <field name="act_window" ref="act_project_form"/>
       </record>
+      <!-- My Projects -->
+      <record model="ir.action.act_window" id="act_my_project_form">
+         <field name="name">My Projects</field>
+         <field name="res_model">afx.project</field>
+      </record>
+      <record model="ir.action.act_window.view" id="act_my_project_form_view1">
+         <field name="sequence" eval="10"/>
+         <field name="view" ref="my_project_view_list"/>
+         <field name="act_window" ref="act_my_project_form"/>
+      </record>
+      <record model="ir.action.act_window.view" id="act_my_project_form_view2">
+         <field name="sequence" eval="20"/>
+         <field name="view" ref="my_project_view_form"/>
+         <field name="act_window" ref="act_my_project_form"/>
+      </record>
       <!-- Menu items -->
       <menuitem
-         name="Projects"
+         name="Project"
          sequence="50"
          id="menu_project"/>
       <menuitem
@@ -37,6 +101,19 @@
          action="act_project_form"
          sequence="10"
          id="menu_project_form"/>
+      <record model="ir.ui.menu-res.group" id="menu_project_admin">
+            <field name="menu" ref="menu_project_form"/>
+            <field name="group" ref="group_project_admin"/>
+      </record>
+      <menuitem
+         parent="menu_project"
+         action="act_my_project_form"
+         sequence="10"
+         id="menu_my_project_form"/>
+      <record model="ir.ui.menu-res.group" id="menu_project_user">
+            <field name="menu" ref="menu_my_project_form"/>
+            <field name="group" ref="group_project_user"/>
+      </record>
       <!-- Project Task -->
       <!-- Views definition -->
       <record model="ir.ui.view" id="project_task_view_form">

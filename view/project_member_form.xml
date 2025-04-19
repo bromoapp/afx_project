@@ -1,8 +1,14 @@
 <form>
-   <label name="project"/>
-   <field name="project"/>
    <label name="member"/>
    <field name="member"/>
    <label name="role"/>
    <field name="role"/>
+   <label name="rate"/>
+   <field name="rate"/>
+   <label name="est_start_date"/>
+   <field name="est_start_date"/>
+   <label name="est_end_date"/>
+   <field name="est_end_date"/>
+   <label name="est_duration"/>
+   <field name="est_duration"/>
 </form>

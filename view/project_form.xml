@@ -7,10 +7,10 @@
    <field name="end_user"/>
    <label name="so_no"/>
    <field name="so_no"/>
+   <label name="po_no"/>
+   <field name="po_no"/>
    <label name="proj_no"/>
    <field name="proj_no"/>
-   <label name="proj_date"/>
-   <field name="proj_date"/>
    <label name="proj_name"/>
    <field name="proj_name"/>
    <label name="start_date"/>
@@ -19,8 +19,6 @@
    <field name="end_date"/>
    <label name="upd_date"/>
    <field name="upd_date"/>
-   <label name="revenue"/>
-   <field name="revenue"/>
    <label name="closed"/>
    <field name="closed"/>
    <label name="cancel"/>

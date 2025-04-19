@@ -1,5 +1,9 @@
 <tree>
    <field name="project"/>
    <field name="member"/>
+   <field name="rate"/>
    <field name="role"/>
+   <field name="est_start_date"/>
+   <field name="est_end_date"/>
+   <field name="est_duration"/>
 </tree>
