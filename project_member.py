@@ -27,6 +27,7 @@ class ProjectMember(ModelSQL, ModelView):
             return max(delta, 0)  # Ensure non-negative duration
         return 0  # Return 0 if either date is missing
     
+    # -------- ON CHANGE ---------
     @fields.depends('project', 'est_start_date', 'est_end_date')
     def on_change_project(self):
         if self.project:
