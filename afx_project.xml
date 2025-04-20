@@ -6,7 +6,7 @@
          <field name="name">Project Administration</field>
       </record>
       <!-- Admin Assignments -->
-      <record model="res.user-res.group" id="user_admin_project_admin">
+      <record model="res.user-res.group" id="user_project_admin">
          <field name="user" ref="res.user_admin"/>
          <field name="group" ref="group_project_admin"/>
       </record>
@@ -19,18 +19,51 @@
          <field name="perm_create" eval="True"/>
          <field name="perm_delete" eval="True"/>
       </record>
+      <record model="ir.model.access" id="access_project_task_admin">
+         <field name="model">afx.project.task</field>
+         <field name="group" ref="group_project_admin"/>
+         <field name="perm_read" eval="True"/>
+         <field name="perm_write" eval="True"/>
+         <field name="perm_create" eval="True"/>
+         <field name="perm_delete" eval="True"/>
+      </record>
+      <record model="ir.model.access" id="access_project_member_admin">
+         <field name="model">afx.project.member</field>
+         <field name="group" ref="group_project_admin"/>
+         <field name="perm_read" eval="True"/>
+         <field name="perm_write" eval="True"/>
+         <field name="perm_create" eval="True"/>
+         <field name="perm_delete" eval="True"/>
+      </record>
+
       <!-- User Definitions -->
       <record model="res.group" id="group_project_user">
          <field name="name">Project User</field>
       </record>
       <!-- User Assignments -->
-      <record model="res.user-res.group" id="user_admin_project_user">
+      <record model="res.user-res.group" id="user_project_user">
          <field name="user" ref="res.user_admin"/>
          <field name="group" ref="group_project_user"/>
       </record>
       <!-- User Access -->
       <record model="ir.model.access" id="access_project_user">
          <field name="model">afx.project</field>
+         <field name="group" ref="group_project_user"/>
+         <field name="perm_read" eval="True"/>
+         <field name="perm_write" eval="False"/>
+         <field name="perm_create" eval="False"/>
+         <field name="perm_delete" eval="False"/>
+      </record>
+      <record model="ir.model.access" id="access_project_task_user">
+         <field name="model">afx.project.task</field>
+         <field name="group" ref="group_project_user"/>
+         <field name="perm_read" eval="True"/>
+         <field name="perm_write" eval="False"/>
+         <field name="perm_create" eval="False"/>
+         <field name="perm_delete" eval="False"/>
+      </record>
+      <record model="ir.model.access" id="access_project_member_user">
+         <field name="model">afx.project.member</field>
          <field name="group" ref="group_project_user"/>
          <field name="perm_read" eval="True"/>
          <field name="perm_write" eval="False"/>

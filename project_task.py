@@ -1,6 +1,5 @@
 from trytond.model import ModelSQL, ModelView, fields
-from trytond.pyson import Bool, Eval
-from trytond.pool import Pool
+from trytond.pyson import Eval
 import logging
 
 logger = logging.getLogger(__name__)

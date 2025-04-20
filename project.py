@@ -1,10 +1,9 @@
 from trytond.model import ModelSQL, ModelView, fields
 from trytond.transaction import Transaction
+from trytond.pyson import Eval
 from trytond.pool import Pool
 import datetime as dt
 import logging
-import hashlib
-import os
 
 logger = logging.getLogger(__name__)
 
@@ -15,16 +14,20 @@ class Project(ModelSQL, ModelView):
 
     # Hardcoded
     MAIN_COMPANY = 1
-    UUID_PREFIX = "prj_"
+    ADMIN = "Project Administration"
 
     unique_id = fields.Char("Uuid")
     proj_no = fields.Char("Project No", required=True)
     customer = fields.Many2One('company.company', "Customer", 'name', required=True, domain=[
         ('id', '!=', MAIN_COMPANY)
-    ])
+    ], states={
+        'readonly': Eval('id', -1) > 0
+    }, depends=['id'])
     end_user = fields.Many2One('company.company', "End User", 'name', required=True, domain=[
         ('id', '!=', MAIN_COMPANY)
-    ])
+    ], states={
+        'readonly': Eval('id', -1) > 0
+    }, depends=['id'])
     so_no = fields.Char("S/O Number", required=True)
     po_no = fields.Char("PO Number", required=True)
     proj_name = fields.Char("Project Name", required=True)
@@ -61,7 +64,7 @@ class Project(ModelSQL, ModelView):
         if self.start_date:
             return self.start_date + dt.timedelta(days=1)
             
-    # -------- COMPUTE FIELDS ------
+    # -------- COMPUTE FIELDS --------
     def compute_upd_date(self, name):
         pool = Pool()
         Date = pool.get('ir.date')
@@ -70,23 +73,55 @@ class Project(ModelSQL, ModelView):
     # -------- OVERRIDE METHOD --------
     @classmethod
     def search(cls, domain, offset=0, limit=None, order=None, count=False, query=False):
-        """
-        Override the search method to filter project records based on the logged-in user.
-        So the logged-in user only sees project records related to him/her self
-        """
-        # Get the logged-in user's ID
-        user_id = Transaction().user
-        if user_id > 1:
-            # Add a condition to filter projects where the user is involved
-            domain = [
-                ('OR',
-                    [('user', '=', user_id)],
-                    [('members.member', '=', user_id)]
-                ),
-                *domain  # Preserve any existing domain conditions
-            ]
-        return super(Project, cls).search(domain, offset=offset, limit=limit, order=order, count=count, query=query)
-    
+        if domain:
+            # This enable search request to bypass limitation by logged-in user authority
+            # currently use by UserTimesheetRecord to query all projects listed
+            # logger.warning(">>>>>>>>>>>>>> DOMAIN ALL")
+            return super(Project, cls).search(domain, offset=offset, limit=limit, order=order, count=count, query=query)
+        else:
+            # This is default domain limitation use logged-in user authority
+            # logger.warning(">>>>>>>>>>>>>> DOMAIN BY USER LOGGED IN")
+            """
+            Override the search method to filter project records based on the logged-in user.
+            So the logged-in user only sees project records related to him/her self
+            """
+            # Get the logged-in user's ID
+            user_id = Transaction().user
+
+            # Get required models from pool to get user's group to determine search
+            # limitation
+            pool = Pool()
+            UserGroup = pool.get('res.user-res.group')
+            Group = pool.get('res.group')
+
+            current_user_groups = UserGroup.search([
+                ('user', '=', user_id)
+            ])
+
+            _is_admin = False
+            if current_user_groups:
+                for user_group in current_user_groups:
+                    group = Group.search([
+                        ('id', '=', user_group.group)
+                    ])
+                    if group:
+                        if group[0].name == cls.ADMIN:
+                            _is_admin = True
+            
+            if _is_admin == False:
+                # Add a condition to filter projects where the user is involved
+                domain = [
+                    ('OR',
+                        [('user', '=', user_id)],
+                        [('members.member', '=', user_id)]
+                    ),
+                    # *domain  # Preserve any existing domain conditions
+                ]
+            else:
+                domain = []
+
+            return super(Project, cls).search(domain, offset=offset, limit=limit, order=order, count=count, query=query)
+
     @classmethod
     def create(cls, vlist):
         projects = super().create(vlist)
